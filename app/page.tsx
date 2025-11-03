@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Hero, type HeroContent } from "../components/Hero";
 import { CONTACT_EMAIL, CORE_REACH } from "../lib/site";
 
@@ -137,6 +137,19 @@ const FAQ: FaqItem[] = [
 
 export default function Page() {
   const [query, setQuery] = useState("");
+  const [navOpen, setNavOpen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setNavOpen(false);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -155,12 +168,55 @@ export default function Page() {
           <img src="/icons/og.svg" alt="OG mark" width={28} height={28} />
           <span className="brand-name">@OmarGuerreroX</span>
         </a>
-        <nav className="nav">
-          <a href="#picks">Recomendados</a>
-          <a href="#ideas">Ideas</a>
-          <a href="#resources">Recursos</a>
-          <a href="#faq">FAQs</a>
-          <a href="/contact">Contacto</a>
+        <button
+          className={`nav-toggle ${navOpen ? "is-active" : ""}`}
+          type="button"
+          aria-expanded={navOpen}
+          aria-controls="site-nav"
+          aria-label={navOpen ? "Cerrar menu" : "Abrir menu"}
+          onClick={() => setNavOpen((open) => !open)}
+        >
+          <span />
+        </button>
+        <nav
+          id="site-nav"
+          className={`nav ${navOpen ? "is-open" : ""}`}
+        >
+          <a
+            className="nav-link"
+            href="#picks"
+            onClick={() => setNavOpen(false)}
+          >
+            Recomendados
+          </a>
+          <a
+            className="nav-link"
+            href="#ideas"
+            onClick={() => setNavOpen(false)}
+          >
+            Ideas
+          </a>
+          <a
+            className="nav-link"
+            href="#resources"
+            onClick={() => setNavOpen(false)}
+          >
+            Recursos
+          </a>
+          <a
+            className="nav-link"
+            href="#faq"
+            onClick={() => setNavOpen(false)}
+          >
+            FAQs
+          </a>
+          <a
+            className="nav-link nav-cta"
+            href="/contact"
+            onClick={() => setNavOpen(false)}
+          >
+            Contacto
+          </a>
         </nav>
       </header>
 
