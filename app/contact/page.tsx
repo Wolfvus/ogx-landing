@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Header } from "../../components/Header";
 import { CONTACT_EMAIL, REACH_DETAILS } from "../../lib/site";
 
 const SERVICES = [
@@ -53,9 +54,16 @@ const CONTACT_OPTIONS = [
   }
 ];
 
+const CONTACT_NAV_LINKS = [
+  { label: "Alcance", href: "#alcance" },
+  { label: "Colaboraciones", href: "#consultoria" },
+  { label: "Inicio", href: "/" }
+];
+
 export default function ContactPage() {
   return (
     <div className="page contact-page">
+      <Header navLinks={CONTACT_NAV_LINKS} />
       <section className="contact-hero" aria-labelledby="contact-page-title">
         <div className="contact-hero-body">
           <p className="eyebrow">Trabajemos juntos</p>

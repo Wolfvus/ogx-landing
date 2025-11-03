@@ -9,8 +9,9 @@ OVERVIEW
 
 CURRENT FILE TREE (KEY ITEMS)
 - app/layout.tsx — global wrapper, metadata, and CSS import.
-- app/page.tsx — main landing page, data arrays, mobile navigation logic, hero.
+- app/page.tsx — main landing page with data arrays (PICKS, IDEAS, RESOURCES, FAQ).
 - app/contact/page.tsx — reach metrics, collaboration formats, contact options.
+- components/Header.tsx — reusable header component with brand, social icons, and configurable navigation.
 - components/Hero.tsx — reusable hero component with CTA, proof, highlights, avatar.
 - app/globals.css — entire design system (grid background, layout, typography, breakpoints).
 - lib/site.ts — shared constants (contact email, reach stats).
@@ -24,7 +25,8 @@ CONTENT MODEL
 - CONTACT_OPTIONS and SERVICES arrays drive the contact page call-to-action blocks.
 
 NAVIGATION + INTERACTION
-- Sticky header with "Omar Guerrero" wordmark plus inline circular socials (IG, TT, X) for quick jumps.
+- Sticky header component (Header.tsx) with "Omar Guerrero" wordmark plus inline circular social icons (Instagram, TikTok, X) using react-icons/fa6.
+  * Configurable navigation links via navLinks prop for page-specific navigation.
   * Mobile nav slides in from the right; links use underline animations instead of pills.
 - Mobile menu collapses to a compact overlay; desktop nav spaces links with animated underlines.
 - Hero search filters resources client-side; highlights scroll horizontally on small screens.
@@ -53,7 +55,8 @@ STYLING NOTES (app/globals.css)
 
 MAINTENANCE CHECKLIST
 - Update content by editing arrays in app/page.tsx or data in lib/site.ts.
-- To add icons, drop SVGs in public/icons and reference paths.
+- To add icons, drop SVGs in public/icons and reference paths, or use react-icons library.
 - Keep new CSS additions modular (extend globals.css, avoid inline styles).
-- When editing navigation, manage both desktop text links and mobile overlay states.
-- Run `pnpm dev` locally to validate responsive breakpoints after changes.
+- Header component (Header.tsx) is reusable across pages with configurable navLinks prop.
+- When editing navigation, update Header.tsx or pass custom navLinks prop to Header component.
+- Run `npm dev` locally to validate responsive breakpoints after changes.

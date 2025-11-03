@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Hero, type HeroContent } from "../components/Hero";
+import { Header } from "../components/Header";
 import { CONTACT_EMAIL, CORE_REACH } from "../lib/site";
 
 type LinkCard = {
@@ -137,19 +138,6 @@ const FAQ: FaqItem[] = [
 
 export default function Page() {
   const [query, setQuery] = useState("");
-  const [navOpen, setNavOpen] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setNavOpen(false);
-      }
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -165,92 +153,7 @@ export default function Page() {
     <div className="page">
       <section className="hero-band" id="top">
         <div className="hero-band-content">
-          <header className="top-bar">
-        <div className="brand-block">
-          <a className="brand-name" href="#top">
-            Omar Guerrero
-          </a>
-          <div className="brand-socials-inline" aria-label="Redes sociales">
-            <a
-              className="social-btn"
-              href="https://instagram.com/omarguerrerox"
-              aria-label="Instagram de Omar"
-              target="_blank"
-              rel="noreferrer"
-            >
-              IG
-            </a>
-            <a
-              className="social-btn"
-              href="https://www.tiktok.com/@omarguerrerox"
-              aria-label="TikTok de Omar"
-              target="_blank"
-              rel="noreferrer"
-            >
-              TT
-            </a>
-            <a
-              className="social-btn"
-              href="https://x.com/OmarGuerreroX"
-              aria-label="Twitter de Omar"
-              target="_blank"
-              rel="noreferrer"
-            >
-              X
-            </a>
-          </div>
-        </div>
-        <button
-          className={`nav-toggle ${navOpen ? "is-active" : ""}`}
-          type="button"
-          aria-expanded={navOpen}
-          aria-controls="site-nav"
-          aria-label={navOpen ? "Cerrar menu" : "Abrir menu"}
-          onClick={() => setNavOpen((open) => !open)}
-        >
-          <span />
-        </button>
-        <nav
-          id="site-nav"
-          className={`nav ${navOpen ? "is-open" : ""}`}
-        >
-          <a
-            className="nav-link"
-            href="#picks"
-            onClick={() => setNavOpen(false)}
-          >
-            Recomendados
-          </a>
-          <a
-            className="nav-link"
-            href="#ideas"
-            onClick={() => setNavOpen(false)}
-          >
-            Ideas
-          </a>
-          <a
-            className="nav-link"
-            href="#resources"
-            onClick={() => setNavOpen(false)}
-          >
-            Recursos
-          </a>
-          <a
-            className="nav-link"
-            href="#faq"
-            onClick={() => setNavOpen(false)}
-          >
-            FAQs
-          </a>
-          <a
-            className="nav-link nav-cta"
-            href="/contact"
-            onClick={() => setNavOpen(false)}
-          >
-            Contacto
-          </a>
-        </nav>
-          </header>
+          <Header />
           <Hero content={HERO} />
         </div>
       </section>
