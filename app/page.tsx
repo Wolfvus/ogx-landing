@@ -38,7 +38,7 @@ const HERO: HeroContent = {
     "Cada semana comparto procesos reales, herramientas y guiones listos para aplicar en tus contenidos y productos digitales.",
   proof: "Respaldo de mas de 48k creadores, consultores y emprendedores que confian en mi trabajo.",
   highlights: CORE_REACH,
-  avatarSrc: "/og-profile.JPEG",
+  avatarSrc: "/og-profile.svg",
   avatarAlt: "Retrato de Omar Guerrero",
   primaryAction: {
     label: "Recibe el playbook semanal",
@@ -130,7 +130,7 @@ const FAQ: FaqItem[] = [
     a: "Newsletter semanal y notas tacticas cuando hay aprendizajes reales."
   },
   {
-    q: "¿Usas enlaces de afiliado?",
+    q: "Usas enlaces de afiliado?",
     a: "A veces. No afecta mis recomendaciones y siempre los etiqueto."
   }
 ];
@@ -163,11 +163,43 @@ export default function Page() {
 
   return (
     <div className="page">
-      <header className="top-bar">
-        <a className="brand" href="#top">
-          <img src="/icons/og.svg" alt="OG mark" width={28} height={28} />
-          <span className="brand-name">@OmarGuerreroX</span>
-        </a>
+      <section className="hero-band" id="top">
+        <div className="hero-band-content">
+          <header className="top-bar">
+        <div className="brand-block">
+          <a className="brand-name" href="#top">
+            Omar Guerrero
+          </a>
+          <div className="brand-socials-inline" aria-label="Redes sociales">
+            <a
+              className="social-btn"
+              href="https://instagram.com/omarguerrerox"
+              aria-label="Instagram de Omar"
+              target="_blank"
+              rel="noreferrer"
+            >
+              IG
+            </a>
+            <a
+              className="social-btn"
+              href="https://www.tiktok.com/@omarguerrerox"
+              aria-label="TikTok de Omar"
+              target="_blank"
+              rel="noreferrer"
+            >
+              TT
+            </a>
+            <a
+              className="social-btn"
+              href="https://x.com/OmarGuerreroX"
+              aria-label="Twitter de Omar"
+              target="_blank"
+              rel="noreferrer"
+            >
+              X
+            </a>
+          </div>
+        </div>
         <button
           className={`nav-toggle ${navOpen ? "is-active" : ""}`}
           type="button"
@@ -218,10 +250,12 @@ export default function Page() {
             Contacto
           </a>
         </nav>
-      </header>
+          </header>
+          <Hero content={HERO} />
+        </div>
+      </section>
 
-      <main id="top" className="content">
-        <Hero content={HERO} />
+      <main className="content">
 
         <section id="picks" aria-labelledby="picks-title" className="section">
           <div className="section-head">
