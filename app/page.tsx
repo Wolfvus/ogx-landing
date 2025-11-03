@@ -198,7 +198,7 @@ export default function Page() {
                   </p>
                   <p className="muted">{idea.note}</p>
                 </div>
-                <span aria-hidden="true">-></span>
+                <span aria-hidden="true">{"→"}</span>
               </a>
             ))}
           </div>
