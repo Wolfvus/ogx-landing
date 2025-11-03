@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { Hero, type HeroContent } from "../components/Hero";
+import { CONTACT_EMAIL, CORE_REACH } from "../lib/site";
 
 type LinkCard = {
   title: string;
@@ -29,24 +31,43 @@ type FaqItem = {
   a: string;
 };
 
+const HERO: HeroContent = {
+  eyebrow: "Contenido sin humo para creadores serios",
+  title: "Aprende a lanzar, monetizar y crecer con lo que ya tienes.",
+  description:
+    "Cada semana comparto procesos reales, herramientas y guiones listos para aplicar en tus contenidos y productos digitales.",
+  proof: "Respaldo de mas de 48k creadores, consultores y emprendedores que confian en mi trabajo.",
+  highlights: CORE_REACH,
+  avatarSrc: "/og-profile.JPEG",
+  avatarAlt: "Retrato de Omar Guerrero",
+  primaryAction: {
+    label: "Recibe el playbook semanal",
+    href: "https://your-newsletter-url"
+  },
+  secondaryAction: {
+    label: "Ver media kit",
+    href: "/contact"
+  }
+};
+
 const PICKS: LinkCard[] = [
   {
-    title: "Primary Newsletter",
-    desc: "Weekly no-BS notes & picks.",
+    title: "Newsletter principal",
+    desc: "Notas directas y tacticas accionables cada semana.",
     href: "https://your-newsletter-url",
     icon: "/icons/news.svg",
-    badge: "New"
+    badge: "Nuevo"
   },
   {
-    title: "Top Tools I Use",
-    desc: "Affiliates disclosed. Real value only.",
+    title: "Herramientas que uso",
+    desc: "Sin humo: software y equipo con enlaces transparentes.",
     href: "https://your-top-tools",
     icon: "/icons/tools.svg"
   },
   {
-    title: "Book a Call",
-    desc: "Signal-heavy strategy session.",
-    href: "#contact",
+    title: "Agenda una sesion",
+    desc: "Estrategia enfocada y directa en 45 minutos.",
+    href: "/contact#consultoria",
     icon: "/icons/call.svg"
   }
 ];
@@ -54,19 +75,19 @@ const PICKS: LinkCard[] = [
 const IDEAS: Idea[] = [
   {
     title: "Creator OS v1",
-    note: "Simple content pipeline: capture → draft → ship.",
+    note: "Flujo completo: capturar -> depurar -> publicar.",
     href: "#",
-    tag: "systems"
+    tag: "sistemas"
   },
   {
-    title: "Gear Under $200",
-    note: "Mic, lights, stands that actually matter.",
+    title: "Setup debajo de $200",
+    note: "Micros, luces y soportes que realmente suman.",
     href: "#",
-    tag: "gear"
+    tag: "equipo"
   },
   {
-    title: "Rapid Reviews",
-    note: "30-min pass: what stays, what goes.",
+    title: "Auditorias expres",
+    note: "Diagnostico rapido: que escalar y que cortar.",
     href: "#",
     tag: "reviews"
   }
@@ -74,47 +95,45 @@ const IDEAS: Idea[] = [
 
 const RESOURCES: Resource[] = [
   {
-    title: "Mic Shortlist 2025",
-    summary: "Reliable mics by budget; caveats included.",
+    title: "Microfonos recomendados 2025",
+    summary: "Opciones confiables por presupuesto con notas claras.",
     href: "#",
-    tags: ["audio", "gear"]
+    tags: ["audio", "equipo"]
   },
   {
-    title: "Lighting 101",
-    summary: "Three setups for small rooms.",
+    title: "Iluminacion simple",
+    summary: "Tres esquemas para espacios reducidos.",
     href: "#",
-    tags: ["video", "lighting"]
+    tags: ["video", "luz"]
   },
   {
-    title: "Editing Flow",
-    summary: "Cut faster with a reusable timeline.",
+    title: "Workflow de edicion",
+    summary: "Plantilla de timeline para editar mas rapido.",
     href: "#",
-    tags: ["editing", "workflow"]
+    tags: ["edicion", "flujo"]
   },
   {
-    title: "Link Tracking",
-    summary: "UTM + sheet template for affiliates.",
+    title: "Tracking de enlaces",
+    summary: "UTM + hoja de control para colaboraciones.",
     href: "#",
-    tags: ["analytics", "affiliates"]
+    tags: ["analytics", "afiliados"]
   }
 ];
 
 const FAQ: FaqItem[] = [
   {
-    q: "Do you take paid promos?",
-    a: "Only if I'd recommend it to a friend. If sponsored, I disclose it."
+    q: "Aceptas colaboraciones pagadas?",
+    a: "Solo con marcas que usaria personalmente. Si es sponsor, se senala claro."
   },
   {
-    q: "How often do you publish?",
-    a: "Weekly posts; ad-hoc field notes when useful."
+    q: "Con que frecuencia publicas?",
+    a: "Newsletter semanal y notas tacticas cuando hay aprendizajes reales."
   },
   {
-    q: "Affiliate links?",
-    a: "Sometimes. They never change my verdict. I flag them."
+    q: "¿Usas enlaces de afiliado?",
+    a: "A veces. No afecta mis recomendaciones y siempre los etiqueto."
   }
 ];
-
-const CONTACT_EMAIL = "hey@omarguerrerox.com";
 
 export default function Page() {
   const [query, setQuery] = useState("");
@@ -137,36 +156,21 @@ export default function Page() {
           <span className="brand-name">@OmarGuerreroX</span>
         </a>
         <nav className="nav">
-          <a href="#picks">Picks</a>
+          <a href="#picks">Recomendados</a>
           <a href="#ideas">Ideas</a>
-          <a href="#resources">Resources</a>
-          <a href="#faq">FAQ</a>
-          <a href="#contact">Contact</a>
+          <a href="#resources">Recursos</a>
+          <a href="#faq">FAQs</a>
+          <a href="/contact">Contacto</a>
         </nav>
       </header>
 
       <main id="top" className="content">
-        <section className="hero" aria-labelledby="hero-title">
-          <p className="eyebrow">Creator. Builder. Operator.</p>
-          <h1 id="hero-title">Useful content. Real products.</h1>
-          <p className="lead">
-            Field-tested guides, gear picks, and frameworks so you can ship faster without
-            the fluff.
-          </p>
-          <div className="hero-actions">
-            <a className="button" href="https://your-newsletter-url">
-              Start with the newsletter
-            </a>
-            <a className="link-alt" href="#contact">
-              Book a strategy call
-            </a>
-          </div>
-        </section>
+        <Hero content={HERO} />
 
         <section id="picks" aria-labelledby="picks-title" className="section">
           <div className="section-head">
-            <h2 id="picks-title">Quick Picks</h2>
-            <p className="muted">What I send to most people first.</p>
+            <h2 id="picks-title">Recomendados al instante</h2>
+            <p className="muted">Lo primero que comparto cuando alguien busca recursos.</p>
           </div>
           <div className="cards-grid">
             {PICKS.map((pick) => (
@@ -188,8 +192,8 @@ export default function Page() {
 
         <section id="ideas" aria-labelledby="ideas-title" className="section">
           <div className="section-head">
-            <h2 id="ideas-title">Ideas & Previews</h2>
-            <p className="muted">Snapshots of what&apos;s on deck.</p>
+            <h2 id="ideas-title">Ideas y avances</h2>
+            <p className="muted">Lo que estoy construyendo ahora mismo.</p>
           </div>
           <div className="stack">
             {IDEAS.map((idea) => (
@@ -201,7 +205,7 @@ export default function Page() {
                   </p>
                   <p className="muted">{idea.note}</p>
                 </div>
-                <span aria-hidden="true">→</span>
+                <span aria-hidden="true">-></span>
               </a>
             ))}
           </div>
@@ -209,15 +213,15 @@ export default function Page() {
 
         <section id="resources" aria-labelledby="resources-title" className="section">
           <div className="section-head">
-            <h2 id="resources-title">Resources</h2>
-            <p className="muted">Search by topic, tool, or outcome.</p>
+            <h2 id="resources-title">Recursos</h2>
+            <p className="muted">Busca por tema, herramienta o resultado.</p>
           </div>
           <label className="search">
-            <span className="sr-only">Search resources</span>
+            <span className="sr-only">Buscar recursos</span>
             <input
               type="search"
               name="resource-search"
-              placeholder="Try “lighting” or “workflow”"
+              placeholder="Prueba luz o flujo"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
             />
@@ -241,7 +245,7 @@ export default function Page() {
               ))
             ) : (
               <p className="muted">
-                No matches yet. Ping me with what you need and I&apos;ll add it next.
+                Aun no hay coincidencias. Escribeme lo que buscas y lo sumo pronto.
               </p>
             )}
           </div>
@@ -249,8 +253,8 @@ export default function Page() {
 
         <section id="faq" aria-labelledby="faq-title" className="section">
           <div className="section-head">
-            <h2 id="faq-title">FAQ</h2>
-            <p className="muted">The quick answers I send most.</p>
+            <h2 id="faq-title">Preguntas frecuentes</h2>
+            <p className="muted">Respuestas rapidas a lo que mas me preguntan.</p>
           </div>
           <div className="faq">
             {FAQ.map((item) => (
@@ -263,21 +267,23 @@ export default function Page() {
         </section>
 
         <section id="contact" aria-labelledby="contact-title" className="section contact">
-          <h2 id="contact-title">Contact</h2>
+          <h2 id="contact-title">Contacto directo</h2>
           <p className="muted">
-            Book consults, send questions, or pitch a collaboration. I read every note.
+            Agenda consultorias, propuestas de marca o colaboraciones. Leo cada mensaje.
           </p>
           <a className="button secondary" href={`mailto:${CONTACT_EMAIL}`}>
-            Email {CONTACT_EMAIL}
+            Escribe a {CONTACT_EMAIL}
           </a>
-          <p className="muted">DMs are open on X as well.</p>
+          <p className="muted">
+            Tambien puedes ver mis metricas de alcance en <a href="/contact">esta pagina</a>.
+          </p>
         </section>
       </main>
 
       <footer className="footer">
-        <p>© {new Date().getFullYear()} Omar Guerrero. Built with Next.js.</p>
+        <p>Copyright {new Date().getFullYear()} Omar Guerrero. Sitio construido con Next.js.</p>
         <a href="https://x.com/OmarGuerreroX" target="_blank" rel="noreferrer">
-          Follow on X
+          Sigueme en X
         </a>
       </footer>
     </div>
